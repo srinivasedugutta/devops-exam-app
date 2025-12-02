@@ -98,13 +98,13 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "kastrov/devopsexamapp:latest"
+        DOCKER_IMAGE = "srinivasedugutta/devopsexamapp:latest"
     }
 
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/KastroVKiran/devops-exam-app.git', 
+                git url: 'https://github.com/srinivasedugutta/devops-exam-app.git', 
                     branch: 'master'
             }
         }
@@ -206,7 +206,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "kastrov/devopsexamapp:latest"
+        DOCKER_IMAGE = "srinivasedugutta/devopsexamapp:latest"
         EKS_CLUSTER = "devopsapp"
         K8S_NAMESPACE = "devopsexamapp"
         AWS_REGION = "us-west-2"  // Update to your region
@@ -234,7 +234,7 @@ pipeline {
                         # Create image pull secret
                         kubectl create secret docker-registry dockerhub-creds \\
                             --docker-server=https://index.docker.io/v1/ \\
-                            --docker-username=kastrov \\
+                            --docker-username=srinivasedugutta \\
                             --docker-password=\$(cat /var/jenkins_home/docker-creds/password) \\
                             --namespace=${K8S_NAMESPACE} \\
                             --dry-run=client -o yaml | kubectl apply -f -
